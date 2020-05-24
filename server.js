@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 const apiRouter = require('./server/api');
 
 app.get('/', function(req,res) {
-  res.sendFile('../index.html');
+  res.sendFile('index.html');
 });
 
 app.use('/api', apiRouter);
