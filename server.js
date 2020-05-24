@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const cors = require('cors');
 
 module.exports = app;
@@ -16,20 +17,21 @@ app.use(cors());
 
 // Add middware for parsing request bodies here:
 app.use(bodyParser.json());
+app.use(morgan('dev'));
 
 // Mount your existing apiRouter below at the '/api' path.
 const apiRouter = require('./server/api');
 
-app.get('/', function(req,res) {
-  // const pathI = path.join(__dirname + '/index.html');
-  // console.log(`\n\n ${pathI}\n\n`);
-  res.sendFile('index.html');
-
-});
-
 app.use('/api', apiRouter);
 
+app.get('/', function(req,res) {
+  res.sendFile(path.join(__dirname + '/index.html'));
+});
+
+app.use(express.static('./'));
+
 // This conditional is here for testing purposes:
+console.log(module.parent)
 if (!module.parent) { 
   // Add your code to start the server listening at PORT below:
   app.listen(PORT);
