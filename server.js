@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 const apiRouter = require('./server/api');
 
 app.get('/', function(req,res) {
-  const pathI = 'index.html';//path.join(__dirname+'/index.html');
+  const pathI = './index.html';//path.join(__dirname+'/index.html');
   res.sendFile(pathI);
 
   console.log(`\n\n ${pathI}\n\n`);
