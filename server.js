@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -20,7 +21,7 @@ app.use(bodyParser.json());
 const apiRouter = require('./server/api');
 
 app.get('/', function(req,res) {
-  res.sendFile('./index.html');
+  res.sendFile(path.join(__dirname+'/index.html'));
 });
 
 app.use('/api', apiRouter);
